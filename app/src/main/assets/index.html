@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qafon Dex</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;padding:25px 20px;
+ background:#0d1513;color:white;
+ font-family:Arial,sans-serif
+}
+header{display:flex;justify-content:space-between;align-items:center}
+.logo{color:#20dcae;font-size:23px;font-weight:bold}
+.card{
+ background:#192321;padding:22px;
+ border-radius:20px;margin-top:28px
+}
+h3{color:#a8c9bf}
+button{
+ background:#17634e;color:white;border:0;
+ padding:13px 20px;border-radius:30px;
+ font-size:15px;font-weight:bold
+}
+.game{
+ display:flex;align-items:center;gap:18px;
+ background:#192321;padding:20px;
+ border-radius:18px;margin-top:15px
+}
+.game button{margin-left:auto}
+#panel{
+ display:none;position:fixed;inset:0;
+ background:#000b;align-items:center;
+ justify-content:center;padding:20px
+}
+.modal{
+ background:#192923;padding:25px;
+ border-radius:20px;width:100%;max-width:400px
+}
+input{width:100%;accent-color:#20dcae}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">◉ QAFON DEX</div>
+ <span>ID</span>
+</header>
+
+<div class="card">
+ <h3>KREDIT</h3>
+ <h1>2 / 100</h1>
+ <button onclick="alert('Fitur kredit segera hadir')">+ Tambah</button>
+</div>
+
+<h3>PERPUSTAKAAN GAME</h3>
+
+<div class="game">
+ <div style="font-size:35px">🎮</div>
+ <b>Free Fire</b>
+ <button onclick="openGame()">PILIH</button>
+</div>
+
+<div class="card">
+ <button onclick="showPanel()">⚙ Pengaturan Sensitivity</button>
+</div>
+
+<div id="panel">
+ <div class="modal">
+  <h2>QAFON OVERLAY</h2>
+  <p>Sensitivity</p>
+  <input type="range" min="1" max="100" value="50">
+  <p>Touch Response</p>
+  <input type="range" min="1" max="100" value="50">
+  <br><br>
+  <button onclick="hidePanel()">Tutup</button>
+ </div>
+</div>
+
+<script>
+function showPanel(){
+ document.getElementById('panel').style.display='flex';
+}
+function hidePanel(){
+ document.getElementById('panel').style.display='none';
+}
+function openGame(){
+ if(window.Android){Android.openGame();}else{alert('Bridge Android belum tersedia');}
+}
+</script>
+</body>
+</html>
