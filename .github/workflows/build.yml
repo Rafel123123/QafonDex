@@ -7,7 +7,6 @@ name: Build Qafon Dex APK
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -16,15 +15,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: ''
+      - uses: android-actions/setup-android@v3
 
-      - name: Accept licenses and install SDK
+      - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses || true
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+          sdkmanager --sdk_root="$ANDROID_HOME" --licenses
+          sdkmanager --sdk_root="$ANDROID_HOME" "platforms;android-35" "build-tools;35.0.0"
 
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -37,3 +33,4 @@ jobs:
         with:
           name: QafonDex-APK
           path: app/build/outputs/apk/debug/*.apk
+          
